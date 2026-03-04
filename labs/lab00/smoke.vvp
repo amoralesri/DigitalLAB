@@ -1,0 +1,66 @@
+#! /usr/bin/env bash
+exec /home/andresmorales/miniconda3/envs/digital/bin/vvp -f "$0" "$@" <<'# EOF'
+:ivl_version "13.0 (devel)" "(0_8-6859-gf50cc35d2-dirty)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/home/andresmorales/miniconda3/envs/digital/lib/ivl/system.vpi";
+:vpi_module "/home/andresmorales/miniconda3/envs/digital/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/home/andresmorales/miniconda3/envs/digital/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/home/andresmorales/miniconda3/envs/digital/lib/ivl/v2005_math.vpi";
+:vpi_module "/home/andresmorales/miniconda3/envs/digital/lib/ivl/va_math.vpi";
+S_0x2c6cef10 .scope module, "tb_smoke_andor" "tb_smoke_andor" 2 4;
+ .timescale -9 -9;
+v0x2c6e16b0_0 .var "a", 0 0;
+v0x2c6e1770_0 .var "b", 0 0;
+v0x2c6e1810_0 .net "y_and", 0 0, L_0x2c6e1a70;  1 drivers
+v0x2c6e18b0_0 .net "y_or", 0 0, L_0x2c6e1bd0;  1 drivers
+v0x2c6e1980_0 .net "y_xor", 0 0, L_0x2c6e1c90;  1 drivers
+S_0x2c6cf0a0 .scope module, "dut" "smoke_andor" 2 10, 3 1 0, S_0x2c6cef10;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "y_and";
+    .port_info 3 /OUTPUT 1 "y_or";
+    .port_info 4 /OUTPUT 1 "y_xor";
+L_0x2c6e1a70 .functor AND 1, v0x2c6e16b0_0, v0x2c6e1770_0, C4<1>, C4<1>;
+L_0x2c6e1bd0 .functor OR 1, v0x2c6e16b0_0, v0x2c6e1770_0, C4<0>, C4<0>;
+L_0x2c6e1c90 .functor XOR 1, v0x2c6e16b0_0, v0x2c6e1770_0, C4<0>, C4<0>;
+v0x2c6951f0_0 .net "a", 0 0, v0x2c6e16b0_0;  1 drivers
+v0x2c6e12e0_0 .net "b", 0 0, v0x2c6e1770_0;  1 drivers
+v0x2c6e13a0_0 .net "y_and", 0 0, L_0x2c6e1a70;  alias, 1 drivers
+v0x2c6e1440_0 .net "y_or", 0 0, L_0x2c6e1bd0;  alias, 1 drivers
+v0x2c6e1500_0 .net "y_xor", 0 0, L_0x2c6e1c90;  alias, 1 drivers
+    .scope S_0x2c6cef10;
+T_0 ;
+    %vpi_call 2 20 "$dumpfile", "smoke.vcd" {0 0 0};
+    %vpi_call 2 21 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x2c6cef10 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2c6e16b0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2c6e1770_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2c6e16b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2c6e1770_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2c6e16b0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x2c6e1770_0, 0, 1;
+    %delay 10, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2c6e16b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x2c6e1770_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 30 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "src/tb_smoke_andor.v";
+    "src/smoke_andor.v";
+# EOF
