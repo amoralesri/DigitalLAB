@@ -16,8 +16,14 @@ En esta práctica se desarrollaron tres ejercicios enfocados en el uso de Verilo
 ### 1. Semáforo Simple (FSM de control)
 Se implementó un controlador para un semáforo utilizando una máquina de estados de tipo Moore. El sistema cuenta con tres estados (`S0_VERDE`, `S1_AMARILLO`, `S2_ROJO`) y un contador interno (`timer`) para mantener cada luz encendida durante el número de ciclos de reloj requeridos (5 para verde, 2 para amarillo y 4 para rojo).
 
+**Diagrama de máquina de estados solicitado:**
+![Diagrama Maquina de estados Semaforo](src/imgs/Diagrama_Maquina_de_estados_Semaforo.jpeg)
+
 ### 2. Acumulador Secuencial (FSM con Datapath)
 Se diseñó un sistema secuencial que acumula un valor de entrada `x` de 4 bits. Para nuestro grupo, se implementó la variante de **sumar el valor 4 veces**. El diseño consta de una FSM que controla el flujo (estados `IDLE`, `LOAD`, `ADD`, `DONE`) y un datapath que incluye un registro acumulador y un contador de iteraciones. 
+
+**Diagrama de máquina de estados solicitado:**
+![Diagrama maquina estados Acumulador](src/imgs/Diagrama_maquina_estados_Acumulador.jpeg)
 
 ### 3. Transmisor Serial (ASM Completa)
 Se desarrolló un transmisor síncrono de 8 bits que integra control y datapath. Se configuró para que cada bit transmitido tenga una duración de 8 ciclos de reloj (`CLKS_PER_BIT = 8`). El datapath utiliza un registro de desplazamiento (`shift_reg`) para enviar el bit menos significativo y un contador (`tick_cnt`) que garantiza la duración temporal de cada bit en la línea `tx`.
